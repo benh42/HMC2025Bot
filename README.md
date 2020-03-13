@@ -2,5 +2,7 @@
 This is a repository for the HMC class of 2024 Discord bot!
 
 Contributors thusfar:
+
 Ben
+
 Georgia
