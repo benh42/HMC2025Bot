@@ -46,7 +46,7 @@ var alexaCalls = [
   "This is so sad: Alexa... entertain the guests",
   "This is so sad: Alexa... take it from here",
   "This is so sad: Alexa... finish them",
-  "This is so sad: Alexa... dont leave me hanging",
+  "This is so sad: Alexa... don't leave me hanging",
   "This is so sad: Alexa... launch the missiles",
   "This is so sad: Alexa... look me in the eyes and say you never loved me",
   "This is so sad: Alexa... play serotonin"
@@ -70,6 +70,31 @@ client.on('message', msg => {
     msg.channel.send(insults[Math.floor(Math.random() * insults.length)]);
   }
   if (msg.content === '!apd') {
-    msg.channel.send(alexaCalls[Math.floor(Math.random() * alexaCalls.length)])
+    msg.channel.send(alexaCalls[Math.floor(Math.random() * alexaCalls.length)]);
   }
+  
+  if (msg.content === "!rage") {
+		// This command send a message with a randomized keyboard smash.
+		
+		// Contains all the letters on the middle row of the QWERTY keyboard.
+		var keyboard = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
+		var keyboardSmash = "";
+		
+		// Randomizes the length of the string from 5-25.
+		var lenSmash = (Math.floor(Math.random() * 20) + 5);
+		var i;
+		for (i = 0; i < lenSmash; i++) {
+			// Adds the new randomized letter to the end of the keyboardSmash string.
+			keyboardSmash = keyboardSmash + keyboard[Math.floor(Math.random() * keyboard.length)];
+		}
+		
+		// 66% of the time it is upper case, 33% of the time it is lower case.
+		var lowerUpper = Math.floor(Math.random() * 3);
+		if (lowerUpper !== 0) {
+			keyboardSmash = keyboardSmash.toUpperCase();
+		}
+		
+		// Sends the message.
+		msg.channel.send(keyboardSmash);
+	}
 });
