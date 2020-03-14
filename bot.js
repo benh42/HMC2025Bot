@@ -4,6 +4,22 @@ const auth = require('./auth.json');
 const fs = require('fs');
 
 
+// TODO: add your command to this list when you create a new command
+/*
+This is the list of commands for !help
+*/
+var commands = [
+  "!help",
+  "!dino",
+  "!yam",
+  "!apd",
+  "!rage",
+  "!cruggz",
+  "!anticruggz",
+  "!pipie"
+]
+
+
 /*
 This section defines the Dino folder and gets all of the images from it for !dino.
 */
@@ -89,6 +105,14 @@ client.on('ready', () => {
 client.login(auth.token);
 
 client.on('message', msg => {
+
+  if(msg.content === '!help'){
+    var message = commands[0];
+    for(var i=1; i<commands.length; i++){
+      message += "\n"+commands[i];
+    }
+    msg.channel.send(message);
+  }
 
   if (msg.content === '!dino') {
     msg.channel.send('One dino, coming right up!', {
