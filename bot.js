@@ -112,18 +112,23 @@ client.on('message', msg => {
 		// Contains all the letters on the middle row of the QWERTY keyboard.
 		var keyboard = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
 		var keyboardSmash = "";
+
+    // 33% of the time it is upper case, 33% of the time it is lower case, 33% of the time it is a random combination of upper and lower case.
+    var lowerUpper = Math.floor(Math.random() * 3);
 		
 		// Randomizes the length of the string from 5-25.
 		var lenSmash = (Math.floor(Math.random() * 20) + 5);
 		var i;
 		for (i = 0; i < lenSmash; i++) {
 			// Adds the new randomized letter to the end of the keyboardSmash string.
-			keyboardSmash = keyboardSmash + keyboard[Math.floor(Math.random() * keyboard.length)];
+      if(lowerUpper == 1 && Math.floor(Math.random()*2)==0){
+        keyboardSmash = keyboardSmash + keyboard[Math.floor(Math.random() * keyboard.length)].toUpperCase();
+      } else {
+        keyboardSmash = keyboardSmash + keyboard[Math.floor(Math.random() * keyboard.length)];
+      }
 		}
 		
-		// 66% of the time it is upper case, 33% of the time it is lower case.
-		var lowerUpper = Math.floor(Math.random() * 3);
-		if (lowerUpper !== 0) {
+		if (lowerUpper == 0) {
 			keyboardSmash = keyboardSmash.toUpperCase();
 		}
 		
