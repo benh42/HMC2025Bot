@@ -52,6 +52,36 @@ var alexaCalls = [
   "This is so sad: Alexa... play serotonin"
 ]
 
+/*
+This section defines the Cruggz and Anti-cruggz folder and gets all of the images from it for !cruggz and !anti-cruggz.
+*/
+var cruggzFolder = './Cruggz';
+var cruggz = [];
+fs.readdir(cruggzFolder, (err,files) => {
+  if (err) {
+    console.log("error bad ):");
+  }
+  var i;
+  for (i=0; i<files.length; i++) {
+    if (files[i] != ".DS_Store") {
+      cruggz.push(`${cruggzFolder}/${files[i]}`);
+    }
+  };
+});
+var antiCruggzFolder = './AntiCruggz';
+var antiCruggz = [];
+fs.readdir(antiCruggzFolder, (err,files) => {
+  if (err) {
+    console.log("error bad ):");
+  }
+  var i;
+  for (i=0; i<files.length; i++) {
+    if (files[i] != ".DS_Store") {
+      antiCruggz.push(`${antiCruggzFolder}/${files[i]}`);
+    }
+  };
+});
+
 client.on('ready', () => {
   console.log(`logged in as ${client.user.tag}!`);
 });
@@ -59,6 +89,7 @@ client.on('ready', () => {
 client.login(auth.token);
 
 client.on('message', msg => {
+
   if (msg.content === '!dino') {
     msg.channel.send('One dino, coming right up!', {
             files: [{
@@ -66,14 +97,16 @@ client.on('message', msg => {
             }]
         });
   }
+  
   if (msg.content === '!yam') {
     msg.channel.send(insults[Math.floor(Math.random() * insults.length)]);
   }
+  
   if (msg.content === '!apd') {
     msg.channel.send(alexaCalls[Math.floor(Math.random() * alexaCalls.length)]);
   }
   
-  if (msg.content === "!rage") {
+  if (msg.content === '!rage') {
 		// This command send a message with a randomized keyboard smash.
 		
 		// Contains all the letters on the middle row of the QWERTY keyboard.
@@ -97,4 +130,24 @@ client.on('message', msg => {
 		// Sends the message.
 		msg.channel.send(keyboardSmash);
 	}
+  
+  if (msg.content === '!cruggz') {
+    // This command welcomes you to the cruggz gang with a picture of awesome cruggz!
+    
+    msg.channel.send('Welcome to the cruggz gang! ', {
+            files: [{
+                attachment: cruggz[Math.floor(Math.random() * cruggz.length)]
+            }]
+        });
+  }
+  
+  if (msg.content === '!anti-cruggz' || msg.content === '!anti cruggz' || msg.content === '!anticruggz') {
+    // This command welcomes you to the anti-cruggz gang with a banned picture of cruggz...
+    
+    msg.channel.send('Welcome to the anti-cruggz gang! ', {
+            files: [{
+                attachment: antiCruggz[Math.floor(Math.random() * antiCruggz.length)]
+            }]
+        });
+  }
 });
