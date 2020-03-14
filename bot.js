@@ -21,6 +21,20 @@ fs.readdir(dinoFolder, (err,files) => {
   };
 });
 
+var pipiesFolder = './pipies';
+var pipies = [];
+fs.readdir(pipiesFolder, (err,files) => {
+  if (err) {
+    console.log("error bad :(");
+  }
+  var i;
+  for (i=0; i<files.length; i++) {
+    if (files[i] != ".DS_Store") {
+      pipies.push(`${pipiesFolder}/${files[i]}`);
+    }
+  };
+});
+
 /*
 This section defines the insults for !yam
 */
@@ -155,4 +169,13 @@ client.on('message', msg => {
             }]
         });
   }
+
+  if (msg.content === '!pipie') {
+    msg.channel.send('Yum!', {
+            files: [{
+                attachment: pipies[Math.floor(Math.random() * pipies.length)]
+            }]
+        });
+  }
+  
 });
