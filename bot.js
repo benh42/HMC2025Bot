@@ -51,6 +51,20 @@ fs.readdir(pipiesFolder, (err,files) => {
   };
 });
 
+var owlFolder = './owls';
+var owls = [];
+fs.readdir(owlFolder, (err,files) => {
+  if (err) {
+    console.log("error bad :(");
+  }
+  var i;
+  for (i=0; i<files.length; i++) {
+    if (files[i] != ".DS_Store") {
+      owls.push(`${owlFolder}/${files[i]}`);
+    }
+  };
+});
+
 /*
 This section defines the insults for !yam
 */
@@ -198,6 +212,14 @@ client.on('message', msg => {
     msg.channel.send('Yum!', {
             files: [{
                 attachment: pipies[Math.floor(Math.random() * pipies.length)]
+            }]
+        });
+  }
+
+  if (msg.content === '!owl') {
+    msg.channel.send( {
+            files: [{
+                attachment: owls[Math.floor(Math.random() * owls.length)]
             }]
         });
   }
