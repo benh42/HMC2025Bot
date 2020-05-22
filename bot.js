@@ -224,4 +224,8 @@ client.on('message', msg => {
         });
   }
   
+  if (msg.content === 'lit') {
+    msg.channel.send('lit lit lit :fire:');
+  }
+  
 });
