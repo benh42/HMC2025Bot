@@ -225,7 +225,7 @@ client.on('message', msg => {
         });
   }
   
-  if (msg.content.includes("lit")) {
+  if (msg.content.match(/\blit\b/gi)!==null) {
     if (msg.author.bot) return;
     msg.channel.send('lit lit lit :fire:');
   }
