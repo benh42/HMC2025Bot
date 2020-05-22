@@ -16,7 +16,8 @@ var commands = [
   "!rage",
   "!cruggz",
   "!anticruggz",
-  "!pipie"
+  "!pipie",
+  "lit"
 ]
 
 
@@ -224,7 +225,8 @@ client.on('message', msg => {
         });
   }
   
-  if (msg.content === 'lit') {
+  if (msg.content.includes("lit")) {
+    if (msg.author.bot) return;
     msg.channel.send('lit lit lit :fire:');
   }
   
