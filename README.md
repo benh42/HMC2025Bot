@@ -1,4 +1,4 @@
-# HMC2024Bot
+# HMC2025Bot
 This is a repository for the HMC class of 2025 Discord bot!
 
 Contributors thusfar:
